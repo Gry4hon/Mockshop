@@ -1,0 +1,499 @@
+/*
+Color Scheme:
+- #f4f4f9
+- #b8dbd9
+- #586f7c
+- #2f4550
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: Helvetica, Lato;
+}
+
+body{
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+.header{
+    width: auto;
+    background-color: #2f4550;
+    color: #f4f4f9;
+    height: 75px;
+}
+
+.header h1{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+#nav-text{
+    display: inline-block;
+    right: 0px;
+    top: 20px;
+    position: absolute;
+    padding-right: 10px;
+    visibility: visible;
+}
+
+#nav-text button{
+    border: none;
+    background: none;
+    width: 150px;
+    height: 35px;
+    margin-right: 5px;
+    font-size: 20px;
+    color: #2f4550;
+}
+
+#nav-text button a{
+    color: #f4f4f9;
+    text-decoration: none;
+}
+
+#nav-text button a:hover{
+    color: #b8dbd9;
+}
+
+#nav-text button a:active{
+    color: #f4f4f9;
+}
+
+.dropdown{
+    visibility: hidden;
+}
+
+#user-button img{
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 3px;
+    margin-bottom: -8px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+#user-button button{
+    margin-left: -50px;
+}
+
+
+.form-body{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background-color: #b8dbd9;
+    border-radius: 10px;
+}
+
+.under-construction{
+    width: auto;
+    height: 75vh;
+    margin-right: auto;
+    margin-left: 2%;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.input-class{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color:#2f4550;
+}
+
+.email-input{
+    width: 60%;
+}
+
+
+button{
+    width: 200px;
+    height: 50px;
+    background: #586f7c;
+    border: none;
+    border-radius: 10px;
+    color: #f4f4f9;
+    margin-bottom: 10px;
+}
+
+
+button:hover{
+    background: #2f4550;
+}
+
+button:active{
+    background: #8C5679;
+}
+.form-body h2{
+    color: #2f4550;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+#error-banner{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 30px;
+    background-color: rgb(77, 77, 77);
+    color: #EDECE0;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: 10px;
+}
+
+.errorNotification{
+    color: #586f7c;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.newEntry{
+    height: auto;
+    width: 300px;
+    background-color:lightgrey;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    color: #010326;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.newEntry img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #EDECE0;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+
+@media only screen and (min-width: 850px) {
+    #dropdown-content a{
+        visibility: hidden;
+    }
+
+    
+    #user-content{
+        right: 0px;
+        visibility: hidden;
+        top: 60px;
+        margin-right: 10px;
+        position: absolute;
+        background-color: #f4f4f9;
+        min-width: 160px;
+        z-index: 1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    #user-content a{
+        text-decoration: none;
+        display: block;
+        padding: 12px 16px;
+        color:#2f4550;
+        border-top: 1px solid #586f7c;
+    }
+
+    #user-content a:hover{
+        background: lightgrey;
+    }
+
+    .order-table{
+        width: 875px;
+        height: auto;
+    }
+    .order-table table{
+        width: 850px;
+        height: auto;
+    }
+
+    .user-table{
+        padding: 1px;
+        width: 500px;
+        height: 300px;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #586f7c;
+        color:#b8dbd9;
+        margin-top: 60px;
+        text-align: center;
+    }
+
+    .table-container{
+        width: 750px;
+        height: auto;
+    }
+
+    .actual-table-style table{
+        width: 950px;
+        height: auto;
+
+    }
+
+    .error-button{
+        width: auto;
+        height: auto;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #586f7c;
+        color:#b8dbd9;
+        text-align: center;
+    }
+}
+
+
+@media only screen and (max-width: 850px) {
+
+    #user-content a{
+        visibility: hidden;
+    }
+
+    #nav-text{
+        visibility: hidden;
+    }
+
+    #user-button{
+        visibility: hidden;  
+    }
+
+
+    .input-class{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .name-input{
+        width: 100px;
+    }
+
+    .dropdown{
+        visibility: visible;
+        display: inline-block;
+    }
+
+    .dropdown-button{
+        position: absolute;
+        right: 0px;
+        top: 20px;
+        margin-right: 10px;
+        height: 40px;
+        width: 40px;
+        border: none;
+        border-radius: 10px;
+        color: #f4f4f9;
+        font-size: 20px;
+    }
+
+    .dropdown-button:hover{
+        background-color: #b8dbd9;
+    }
+
+    #dropdown-content{
+        right: 0px;
+        visibility: hidden;
+        top: 60px;
+        margin-right: 10px;
+        position: absolute;
+        background-color: #f4f4f9;
+        min-width: 160px;
+        z-index: 1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    input{
+        accent-color: #2f4550;
+    }
+    #dropdown-content a{
+        text-decoration: none;
+        display: block;
+        padding: 12px 16px;
+        color:#2f4550;
+        border-top: 1px solid #586f7c;
+    }
+
+    #dropdown-content a:hover{
+        background: lightgrey;
+    }
+    .form-body{
+        width: 450px;
+    }
+    .under-construction img{
+        width: 450px;
+    }
+
+    .order-table{
+        width: 460px;
+        height: auto;
+
+    }
+
+    .order-table table{
+        width: 450px;
+        height: auto;
+        left: -150px;
+        right: 100%;
+    }
+    .order-table th{
+        font-size: 10px;
+    }
+    .order-table td{
+        font-size: 10px;
+    }
+
+    .user-table{
+        padding: 1px;
+        width: 350px;
+        height: auto;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: brown;
+        color:#b8dbd9;
+        margin-top: 60px;
+        text-align: center;
+    }
+    .table-container{
+        width: 470px;
+        height: auto;
+        left: -130px;
+    }
+    .actual-table-style table{
+        width: 350px;
+        height: auto;
+        left: -70px;
+
+    }
+
+    .error-button{
+        width: 350px;
+        height: auto;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #586f7c;
+        color:#b8dbd9;
+        text-align: center;
+    }
+}
+
+.footerClass p{
+    text-align: center;
+    color:#2f4550;
+}
+
+.footerClass h3{
+    text-align: center;
+    color:#2f4550;
+}
+
+
+
+.admin-body h2{
+    color:#010326;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.admin-table{
+    padding: 1px;
+    width: 900px;
+    height: auto;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #586f7c;
+    color:#b8dbd9;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.admin-table h3{
+    margin-top: 20px;
+}
+
+/** Grid system - https://www.w3schools.com/css/css_rwd_grid.asp **/
+
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+ 
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/** Image - https://www.w3schools.com/css/css_rwd_grid.asp **/   
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/** Overflow (for tables) - https://www.w3schools.com/howto/howto_css_table_responsive.asp **/
+.overflow {
+    overflow-x:auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+th {
+    width: 33.3%
+}
+
+.errorNotification{
+    color: darkred;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+table{
+    background-color: #ffffff;
+    color: #010326;
+    border-radius: 5px;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mockshop.com: Cart</title>
+
+    <link href="styles.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Mockshop.com</h1>
+        <div id="nav-text">
+            <button id="nav-button"><a href="index.html">Home</a></button>
+            <button id="nav-button"><a href="product.html">Products</a></button>
+            <button id="nav-button"><a href="cart.html">Cart</a></button>
+            <button onclick="UserContent()" id="user-button"><a href="#"><img src="NoUser.jpg"></a></button>
+            <div id="user-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Settings</a>
+                <a href="register.html">Sign In</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="MakeVisiable()">|||</button>
+            <div id="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="under-construction">
+        <img src="Mockshop-Under-Construction-.gif" alt="A website underconstruction" />
+    </div>
+
+</body>
+<footer class="footerClass">
+    <br>
+    <h3>Cart Page is under construction!</h3>
+    <br>
+    <p>Copyright &copy; Griffin Penn 2023</p>
+</footer>
+
+<script>
+   let isClicked = false;
+
+function UserContent() {
+   let userContent = document.getElementById('user-content');
+
+
+   if (isClicked === false) {
+       userContent.style.visibility = 'visible';
+       isClicked = true;
+   } else {
+       userContent.style.visibility = 'hidden';
+       isClicked = false;
+   }
+
+}
+
+
+
+
+function MakeVisiable() {
+   let dropDownContent = document.getElementById('dropdown-content');
+
+
+   if (isClicked === false) {
+       dropDownContent.style.visibility = 'visible';
+       isClicked = true;
+   } else {
+       dropDownContent.style.visibility = 'hidden';
+       isClicked = false;
+   }
+
+}
+</script>
+
+
+</html>

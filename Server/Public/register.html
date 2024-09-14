@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mockshop.com: Create Account</title>
+
+    <link href="styles.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Mockshop.com</h1>
+        <div id="nav-text">
+            <button id="nav-button"><a href="index.html">Home</a></button>
+            <button id="nav-button"><a href="product.html">Products</a></button>
+            <button id="nav-button"><a href="cart.html">Cart</a></button>
+            <button onclick="UserContent()" id="user-button"><a href="#"><img src="NoUser.jpg"></a></button>
+            <div id="user-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Settings</a>
+                <a href="register.html">Sign In</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="MakeVisiable()">|||</button>
+            <div id="dropdown-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Cart</a>
+                <a href="register.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-body">
+        <h2>Create Account</h2>
+        <br />
+
+        <div class="input-class">
+            <label class="label" for="username">Create Username: </label>
+            <input type="text" id="username" class="username-input">
+            <div id="username-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <label class="n-label" for="first">First name: </label>
+            <input type="text" id="first" class="name-input">
+            <div id="first-error" class="errorNotification">&nbsp;</div>
+
+            <label class="n-label" for="last">Last name: </label>
+            <input type="text" id="last" class="name-input">
+            <div id="last-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <label class="label" for="email">Enter e-mail: </label>
+            <input type="email" id="email" class="email-input">
+            <div id="email-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <label for="pfp" class="label">Profile Picture: </label>
+            <input id="pfp" type="file" class="input">
+            <div id="pfp-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <label class="label" for="pass">Create Password: </label>
+            <input type="password" id="pass" class="pass-input">
+            <div id="pass-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <label class="label" for="passcheck">Confirm Password: </label>
+            <input type="password" id="passcheck" class="pass-input">
+            <div id="passcheck-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <button type="submit" onclick="CreateAccount()">Submit</button>
+        </div>
+    </div>
+
+</body>
+<footer class="footerClass">
+    <br>
+    <p>Already have an account? <a href="login.html">Sign In</a> here!</p>
+    <br>
+    <p>Copyright &copy; Griffin Penn 2023</p>
+</footer>
+
+<script>
+    let isClicked = false;
+
+function UserContent() {
+   let userContent = document.getElementById('user-content');
+
+
+   if (isClicked === false) {
+       userContent.style.visibility = 'visible';
+       isClicked = true;
+   } else {
+       userContent.style.visibility = 'hidden';
+       isClicked = false;
+   }
+
+}
+
+
+
+
+function MakeVisiable() {
+   let dropDownContent = document.getElementById('dropdown-content');
+
+
+   if (isClicked === false) {
+       dropDownContent.style.visibility = 'visible';
+       isClicked = true;
+   } else {
+       dropDownContent.style.visibility = 'hidden';
+       isClicked = false;
+   }
+
+}
+
+    function CreateAccount() {
+        const accountInfromation = new FormData();
+        const fileField = document.querySelector('input[type="file"]');
+
+
+        accountInfromation.append('username', document.getElementById('username').value);
+        accountInfromation.append('first', document.getElementById('first').value);
+        accountInfromation.append('last', document.getElementById('last').value);
+        accountInfromation.append('email', document.getElementById('email').value);
+        accountInfromation.append('pass', document.getElementById('pass').value);
+        accountInfromation.append('passcheck', document.getElementById('passcheck').value);
+        accountInfromation.append('pfp', fileField.files[0]);
+
+
+        let fetchSettings = {
+            method: 'POST',
+            body: accountInfromation
+        };
+        
+        fetch("http://localhost/new_user/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                const errorMessages = document.getElementsByClassName('errorNotification');
+                for (htmlElement of errorMessages) {
+                    htmlElement.innerHTML = '&nbsp;';
+                }
+                if (status === 400) {
+                    for (error of json.errors) {
+
+                        const errorId = error.param + '-error';
+                        document.getElementById(errorId).innerHTML = error.msg;
+                    }
+                }
+                if (status === 500) {
+                    document.getElementById('username-error').innerHTML = "Username is taken";
+                }
+
+                if (status === 200) {
+                    alert("Welcome to Mockshop.com!");
+                }
+            })
+
+            .catch(error => {
+                console.warn('There has been an error:', error);
+            });
+        return;
+
+    }
+</script>
+
+</html>

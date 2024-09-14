@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mockshop.com: Login</title>
+
+    <link href="styles.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Mockshop.com</h1>
+        <div id="nav-text">
+            <button id="nav-button"><a href="index.html">Home</a></button>
+            <button id="nav-button"><a href="product.html">Products</a></button>
+            <button id="nav-button"><a href="cart.html">Cart</a></button>
+            <button onclick="UserContent()" id="user-button"><a href="#"><img src="NoUser.jpg"></a></button>
+            <div id="user-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Settings</a>
+                <a href="#">Sign in</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="MakeVisiable()">|||</button>
+            <div id="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-body">
+        <h2>Login</h2>
+
+        <div class="input-class">
+            <div id="loginError" class="errorNotification"></div>
+
+            <label class="label" for="username">Username: </label>
+            <input type="text" id="username" class="username-input">
+            <div id="username-error" class="errorNotification">&nbsp;</div>
+
+            <label class="label" for="pass">Password: </label>
+            <input type="password" id="pass" class="pass-input">
+            <div id="pass-error" class="errorNotification">&nbsp;</div>
+        </div>
+
+        <div class="input-class">
+            <button type="submit" onclick="LoginUser()">login</button>
+        </div>
+    </div>
+
+</body>
+<footer class="footerClass">
+    <br>
+    <p>Need an account? <a href="register.html">Sign Up</a> here!</p>
+    <br>
+    <p>Copyright &copy; Griffin Penn 2023</p>
+</footer>
+
+<script>
+    let isClicked = false;
+
+function UserContent() {
+   let userContent = document.getElementById('user-content');
+
+
+   if (isClicked === false) {
+       userContent.style.visibility = 'visible';
+       isClicked = true;
+   } else {
+       userContent.style.visibility = 'hidden';
+       isClicked = false;
+   }
+
+}
+
+
+
+
+function MakeVisiable() {
+   let dropDownContent = document.getElementById('dropdown-content');
+
+
+   if (isClicked === false) {
+       dropDownContent.style.visibility = 'visible';
+       isClicked = true;
+   } else {
+       dropDownContent.style.visibility = 'hidden';
+       isClicked = false;
+   }
+
+}
+
+    function LoginUser() {
+        const loginData = new FormData();
+
+        loginData.append('username', document.getElementById('username').value);
+        loginData.append('pass', document.getElementById('pass').value);
+
+        let fetchSettings = {
+            method: 'POST',
+            body: loginData
+        };
+
+        fetch("http://localhost/user_login/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                const errorMessages = document.getElementsByClassName('errorNotification');
+                for (htmlElement of errorMessages) {
+                    htmlElement.innerHTML = '&nbsp;';
+                }
+                if (status === 400) {
+                    for (error of json.errors) {
+                        const errorId = error.param + '-error';
+                        document.getElementById(errorId).innerHTML = error.msg;
+                    }
+                }
+                if (status === 500) {
+                    document.getElementById('loginError').innerHTML = "Wrong username or password";
+                }
+                if (status === 200) {
+                    alert("Successfully logged in!");
+
+                    if (json.userdata.is_admin === 1) {
+                        window.location.href = "admin_panel.html";
+                    }
+                    else {
+                        window.location.href = "user_index.html";
+                    }
+
+                }
+            })
+
+            .catch(error => {
+                console.warn('There has been an error:', error);
+            });
+        return;
+    }
+
+
+</script>
+
+
+</html>

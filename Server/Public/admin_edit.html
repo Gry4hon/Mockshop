@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mockshop.com: User Home</title>
+
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+        integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Mockshop.com</h1>
+        <div id="nav-text">
+            <button id="nav-button"><a href="user_index.html">Home</a></button>
+            <button id="nav-button"><a href="#">Products</a></button>
+            <button id="nav-button"><a href="#">Cart</a></button>
+            <button onclick="UserContent()" id="user-button"><a href="#"><img id="user-pfp"
+                        src="NoUser.jpg"></a></button>
+            <div id="user-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Settings</a>
+                <a href="#">Log Out</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="MakeVisiable()">|||</button>
+            <div id="dropdown-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Cart</a>
+                <a href="#">Sign In</a>
+            </div>
+        </div>
+    </div>
+    <div class="admin-body container-fluid">
+        <h2>ADMIN PANEL</h2>
+
+        <div id="userinfo" class="admin-table container">
+                <h3 id="user-welcome"></h3>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>First Name</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="f_name">
+                    </div>
+                    <div id="f_name-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Last Name</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="l_name">
+                    </div>
+                    <div id="l_name-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Email</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="email">
+                    </div>
+                    <div id="email-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Product Name</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="p_name">
+                    </div>
+                    <div id="p_name-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Product Price</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="p_price">
+                    </div>
+                    <div id="p_price-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Address Number</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="a_num">
+                    </div>
+                    <div id="a_num-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Address Street</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="a_street">
+                    </div>
+                    <div id="a_street-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>City</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="a_city">
+                    </div>
+                    <div id="a_city-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>State</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="a_state">
+                    </div>
+                    <div id="a_state-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <label>Payment Method</label>
+                    </div>
+                    <div class='col-10'>
+                        <input type="text" id="method">
+                    </div>
+                    <div id="method-error" class="errorNotification">&nbsp;</div>
+                </div>
+
+
+
+                <div class='row'>
+                    <div class='col-6'>
+                        <button onclick="UpdateUser()">Update order</button>
+                    </div>
+                    <div class='col-6'>
+                        <a href="admin_panel.html"><button>Cancel</button></a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</body>
+<footer class="footerClass">
+    <br>
+    <p>Copyright &copy; Griffin Penn 2023</p>
+</footer>
+
+<script>
+    
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+    document.onload = GetUserData();
+
+    function GetUserData() {
+
+        const getParameters = {};
+
+        let fetchSettings = {
+            method: 'GET'
+        }
+
+        fetch("http://localhost/user-data/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                if (status === 200) {
+
+                    document.getElementById("user-welcome").innerText = "Welcome admin " + json.userdata.first_name;
+                    document.getElementById("user-pfp").src = json.userdata.user_profile_pic;
+
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return;
+    }
+    let queryParameters = new URLSearchParams(window.location.search);
+
+    let formData = new FormData;
+    formData.append('id', queryParameters.get('id'));
+
+    let fetchSettings = {
+        method: 'GET'
+    }
+
+    //Send FETCH API request
+    fetch("http://localhost/user_results/" + formData.get('id'), fetchSettings)
+        .then((response) => {
+            return new Promise((resolve) => response.json()
+                .then((json) => resolve({
+                    status: response.status,
+                    json,
+                })
+                ));
+        })
+        .then(({ status, json }) => {
+            document.getElementById('f_name').value = json.userdata[0].first_name;
+            document.getElementById('l_name').value = json.userdata[0].last_name;
+            document.getElementById('email').value = json.userdata[0].email;
+            document.getElementById('p_name').value = json.userdata[0].item_name;
+            document.getElementById('p_price').value = json.userdata[0].item_price;
+            document.getElementById('a_num').value = json.userdata[0].address_num;
+            document.getElementById('a_street').value = json.userdata[0].address_street;
+            document.getElementById('a_city').value = json.userdata[0].address_city;
+            document.getElementById('a_state').value = json.userdata[0].state_abbrv;
+            document.getElementById('method').value = json.userdata[0].payment_method;
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+    function UpdateUser() {
+
+        let queryParameters = new URLSearchParams(window.location.search);
+        const updateData = new FormData();
+
+        if (document.getElementById('f_name').value.length !== 0) {
+            updateData.append('f_name', document.getElementById('f_name').value);
+        }
+        if (document.getElementById('l_name').value.length !== 0) {
+            updateData.append('l_name', document.getElementById('l_name').value);
+        }
+
+        if (document.getElementById('email').value.length !== 0) {
+            updateData.append('email', document.getElementById('email').value);
+        }
+        if (document.getElementById('p_name').value.length !== 0) {
+            updateData.append('p_name', document.getElementById('p_name').value);
+        }
+        if (document.getElementById('p_price').value.length !== 0) {
+            updateData.append('p_price', document.getElementById('p_price').value);
+        }
+
+        if (document.getElementById('a_num').value.length !== 0) {
+            updateData.append('a_num', document.getElementById('a_num').value);
+        }
+        if (document.getElementById('a_street').value.length !== 0) {
+            updateData.append('a_street', document.getElementById('a_street').value);
+        }
+        if (document.getElementById('a_city').value.length !== 0) {
+            updateData.append('a_city', document.getElementById('a_city').value);
+        }
+        if (document.getElementById('a_state').value.length !== 0) {
+            updateData.append('a_state', document.getElementById('a_state').value);
+        }
+        if (document.getElementById('method').value.length !== 0) {
+            updateData.append('method', document.getElementById('method').value);
+        }
+
+        updateData.append('id', queryParameters.get('id'));
+
+        let fetchSettings = {
+            method: 'PUT',
+            body: updateData
+        };
+
+        fetch("http://localhost/update_user/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                const errorMessages = document.getElementsByClassName('errorNotification');
+                for (htmlElement of errorMessages) {
+                    htmlElement.innerHTML = '&nbsp;';
+                }
+                if (status === 400) {
+                    for (error of json.errors) {
+                        const errorId = error.param + '-error';
+                        document.getElementById(errorId).innerHTML = error.msg
+                    }
+                }
+                if (status === 200) {
+                    alert("UPDATE COMPLETE");
+                    window.location.href = "admin_panel.html";
+                }
+            })
+            .catch(error => {
+                console.warn('There has been an error:', error);
+            });
+        return;
+    }
+
+    let isClicked = false;
+
+     function UserContent() {
+        let userContent = document.getElementById('user-content');
+
+
+        if (isClicked === false) {
+            userContent.style.visibility = 'visible';
+            isClicked = true;
+        } else {
+            userContent.style.visibility = 'hidden';
+            isClicked = false;
+        }
+
+    }
+
+    
+
+
+    function MakeVisiable() {
+        let dropDownContent = document.getElementById('dropdown-content');
+
+
+        if (isClicked === false) {
+            dropDownContent.style.visibility = 'visible';
+            isClicked = true;
+        } else {
+            dropDownContent.style.visibility = 'hidden';
+            isClicked = false;
+        }
+
+    }
+</script>
+
+</html>

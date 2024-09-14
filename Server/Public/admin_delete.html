@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mockshop.com: User Home</title>
+
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+        integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Mockshop.com</h1>
+        <div id="nav-text">
+            <button id="nav-button"><a href="user_index.html">Home</a></button>
+            <button id="nav-button"><a href="#">Products</a></button>
+            <button id="nav-button"><a href="#">Cart</a></button>
+            <button onclick="UserContent()" id="user-button"><a href="#"><img id="user-pfp"
+                        src="NoUser.jpg"></a></button>
+            <div id="user-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Settings</a>
+                <a href="#">Log Out</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-button" onclick="MakeVisiable()">|||</button>
+            <div id="dropdown-content">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Cart</a>
+                <a href="#">Sign In</a>
+            </div>
+        </div>
+    </div>
+    <div class="admin-body">
+
+        <h2>ADMIN PANEL</h2>
+
+        <div id="userinfo" class="error-button">
+            <div class="container">
+                <h3 id="user-welcome"></h3>
+                <h5 style="font-size: 60px;">ARE YOU SURE???</h5>
+                <br>
+                <button onclick="DeleteUser()">yes</button>
+                <a href="admin_panel.html"><button style="color: red;">Cancel</button></a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<footer class="footerClass">
+    <br>
+    <p>Copyright &copy; Griffin Penn 2023</p>
+</footer>
+
+<script>
+    
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+    document.onload = GetUserData();
+
+    function GetUserData() {
+        let fetchSettings = {
+            method: 'GET'
+        }
+
+        fetch("http://localhost/user-data/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                if (status === 200) {
+
+                    document.getElementById("user-welcome").innerText = "Welcome admin " + json.userdata.first_name;
+                    document.getElementById("user-pfp").src = json.userdata.user_profile_pic;
+
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return;
+    }
+
+    let isClicked = false;
+
+     function UserContent() {
+        let userContent = document.getElementById('user-content');
+
+
+        if (isClicked === false) {
+            userContent.style.visibility = 'visible';
+            isClicked = true;
+        } else {
+            userContent.style.visibility = 'hidden';
+            isClicked = false;
+        }
+
+    }
+
+    
+
+
+    function MakeVisiable() {
+        let dropDownContent = document.getElementById('dropdown-content');
+
+
+        if (isClicked === false) {
+            dropDownContent.style.visibility = 'visible';
+            isClicked = true;
+        } else {
+            dropDownContent.style.visibility = 'hidden';
+            isClicked = false;
+        }
+
+    }
+
+    function DeleteUser() {
+        let queryParameters = new URLSearchParams(window.location.search);
+
+        let formData = new FormData;
+        formData.append('id', queryParameters.get('id'));
+
+        let fetchSettings = {
+            method: 'DELETE',
+            body: formData
+        }
+
+        //Send FETCH API request
+        fetch("http://localhost/delete_user/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            //Logic to display errors on form 
+            .then(({ status, json }) => {
+                if (status === 200) {
+                    alert("DELETE COMPLETE");
+                    window.location.href = "admin_panel.html";
+                }
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return;
+    }
+</script>
+
+</html>
